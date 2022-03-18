@@ -140,14 +140,16 @@ function update(){
     if (cursors.up.isDown){
     player.setVelocityY(-300); 
     }
-
-    if (cursors.space.isDown){ 
-    bombs.setVelocityX (0);
-    bombs.setVelocityY (0);
-    player.setTint(0xff00ff);
+    else if (cursors.down.isDown){
+    player.setVelocityY(300); 
     }
+    else{ 
+    player.setVelocityY(0);
     
-    // 
+    }
+
+
+    //
     if (mob.y <= 200){
     mob.setVelocityY(100)
     }
@@ -155,7 +157,7 @@ function update(){
     if (mob.y >= 400){
     mob.setVelocityY(-100)
     }
-    player.setGravity(x = 0,y = 600);
+    player.setGravity(x = 0,y = 0);
 
 
 //    if(invincible == true){
