@@ -17,7 +17,7 @@ src="//cdn.jsdelivr.net/npm/phaser@3.11.0/dist/phaser.js"></script>
 
 var config = {
 type: Phaser.AUTO,
-width: 4000, height: 600,
+width: 4000, height: 4000,
 physics: {
 default: 'arcade',
 arcade: {
@@ -109,7 +109,7 @@ function create (){
 
     // Camera
 
-    this.cameras.main.setBounds(0, 0, 4000, 448);
+    this.cameras.main.setBounds(0, 0, 4000, 4000);
     this.cameras.main.setSize(800, 600);
     this.cameras.main.startFollow(player);
 
@@ -138,10 +138,10 @@ function update(){
     player.anims.play('turn');
     }
     if (cursors.up.isDown){
-    player.setVelocityY(-300); 
+    player.setVelocityY(-200); 
     }
     else if (cursors.down.isDown){
-    player.setVelocityY(300); 
+    player.setVelocityY(200); 
     }
     else{ 
     player.setVelocityY(0);
