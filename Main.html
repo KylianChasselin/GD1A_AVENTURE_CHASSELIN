@@ -41,7 +41,6 @@ var player;
 var camera;
 var anti_gravite;
 var hp = 3;
-
 var mob; 
 
 
@@ -69,12 +68,24 @@ function create (){
     repeat: -1
     });
     this.anims.create({
-    key: 'turn',
+    key: 'iddle',
     frames: [ { key: 'perso', frame: 2 } ],
     frameRate: 20
     });
     this.anims.create({
     key: 'right',
+    frames: this.anims.generateFrameNumbers('perso', {start:8,end:9}),
+    frameRate: 10,
+    repeat: -1
+    });
+    this.anims.create({
+    key: 'up',
+    frames: this.anims.generateFrameNumbers('perso', {start:5,end:7}),
+    frameRate: 10,
+    repeat: -1
+    });
+    this.anims.create({
+    key: 'down',
     frames: this.anims.generateFrameNumbers('perso', {start:3,end:4}),
     frameRate: 10,
     repeat: -1
@@ -110,13 +121,15 @@ function update(){
     }
     else{ 
     player.setVelocityX(0);
-    player.anims.play('turn');
+    player.anims.play('iddle');
     }
     if (cursors.up.isDown){
     player.setVelocityY(-200); 
+    player.anims.play('up', true);
     }
     else if (cursors.down.isDown){
     player.setVelocityY(200); 
+    player.anims.play('down', true);
     }
     else{ 
     player.setVelocityY(0);
