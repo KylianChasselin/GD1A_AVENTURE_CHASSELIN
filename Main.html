@@ -16,7 +16,7 @@ src="//cdn.jsdelivr.net/npm/phaser@3.11.0/dist/phaser.js"></script>
 <script type="text/javascript">
 
 var config = {
-type: Phaser.AUTO,
+type: Phaser.CANVAS,
 width: 4000, height: 4000,
 physics: {
 default: 'arcade',
@@ -29,7 +29,7 @@ scene: {preload: preload, create: create, update: update }
 
 new Phaser.Game(config);
 function preload(){
-this.load.image('sky', 'assets/sky2.png');
+this.load.image('background', 'assets/background.png');
 this.load.image('ground', 'assets/platform.png');
 this.load.image('mob', 'assets/mob.png');
 this.load.spritesheet('perso','assets/hero patate.png',
@@ -43,18 +43,12 @@ var anti_gravite;
 var hp = 3;
 var mob; 
 
-
 function create (){
-
-    this.add.image(2000, 2000, 'sky').setScale(5) ;
+    
+    this.add.image(100, 100, 'background');
     platforms = this.physics.add.staticGroup();
     toyo = this.physics.add.staticGroup();
     mob = this.physics.add.staticGroup();
-
-    //Plateforme
-
-    platforms.create(50, 350, 'ground');
-    platforms.create(3900, 350, 'ground');
 
     // Joueur et animations
 
@@ -99,14 +93,13 @@ function create (){
     this.cameras.main.setSize(800, 600);
     this.cameras.main.startFollow(player);
 
-
-    
     mob = this.physics.add.image(3500, 50, 'mob');
     this.physics.add.overlap(player, mob, degatObstacle, null, this);
 
 
     hpText = this.add.text (50,50,hp)
     hpText.setScrollFactor(0)
+ 
 }
 
 function update(){
@@ -136,8 +129,6 @@ function update(){
     
     }
 
-
-    //
     if (mob.y <= 200){
     mob.setVelocityY(100)
     }
@@ -146,30 +137,7 @@ function update(){
     mob.setVelocityY(-100)
     }
     player.setGravity(x = 0,y = 0);
-
-
-//    if(invincible == true){
-//        compteur-- ;
-//        if(compteur == 0){
-//            compteur = 60;
-//            player.setTint(0xffffff);
-//            invincible = false ;
-//        }
-//    }
 }
-
-//function onEvent (){
-//    degat = true;
-//    if(invincible == true){
-//        compteur-- ;
-//        if(compteur == 0){
-//            compteur = 60;
-//            player.setTint(0xffffff);
-//            invincible = false ;
-//            degat = true;
-//        }
-//    }
-//}
 
 function degatObstacle(player, mob){
 
